@@ -1,0 +1,45 @@
+1. buat database
+    create database myshop
+
+2. buat table
+create table users(
+    -> id int auto_increment primary key,
+    -> name varchar(255),
+    -> email varchar(255),
+    -> password varchar(255));
+
+create table categories(
+    -> id int auto_increment primary key,
+    -> name varchar(255));
+
+create table items(
+    -> id int auto_increment primary key,
+    -> name varchar(255),
+    -> description varchar(255),
+    -> price int,
+    -> stock int,
+    -> category_id int,
+    -> foreign key (category_id) references categories(id));
+
+3. insert data
+insert into user (name, email)
+    -> values ('john doe','john@doe.com');
+
+insert into categories (name) values('cloth');
+
+insert into items (name, description) values ('uniklohh', 'baju keren dari brand ternama'); 
+
+4. get data
+user:
+    select name, email from user; 
+
+items:
+    1. select * from items where price > 1000000;
+    2. select * from items where name like '%sang%';
+    select name, description from items where name like '%watch%'; 
+
+categories:
+select items.name, items.description, categories.name from items join categories on items.category_id = categories.id; 
+
+5. update data
+update items set price = 2500000 where id = 1;
